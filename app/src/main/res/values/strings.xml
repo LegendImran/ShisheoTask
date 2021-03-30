@@ -39,6 +39,7 @@
         <item>Debit-Card</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="search_restaurant">Search restaurant</string>
 
 
 </resources>

@@ -5,6 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.example.shisheotask.R
 import com.example.shisheotask.modal.RestaurentCard
 
+
+/**
+ * AppRepository is central data source of app
+ * this class directly intract with database and remote Server
+ */
 class AppRepository(var application: Application) {
 
     var images :ArrayList<Int> = ArrayList()
@@ -16,6 +21,10 @@ class AppRepository(var application: Application) {
     var deliverTimes:Array<String>? = null
     var paymentStatus:Array<String>? = null
 
+    /**
+     * this for initialize data
+     *
+     */
     init {
         images.add(R.drawable.ic_demo_dish)
         images.add(R.drawable.ig_dish_2)
@@ -36,17 +45,18 @@ class AppRepository(var application: Application) {
 
 
     val TAG = AppRepository::class.java.canonicalName
-
     private var post: ArrayList<RestaurentCard> = ArrayList()
-    private var mutableLiveData: MutableLiveData<List<RestaurentCard>> =
-        MutableLiveData<List<RestaurentCard>>()
 
+
+    /**
+     * this for initialize data
+     * @return livePost is MutableLiveData is act like Observable it notify its Observer whenever there is change in data
+     */
     fun getCardListMutableLivedata():MutableLiveData<ArrayList<RestaurentCard>>{
 
         for(i in 0..(images.size-1)){
             post.add(RestaurentCard(images.get(i),dishnames!![i],cuisine!![i],prices!![i],discounts!![i],rates.get(i),deliverTimes!![i],paymentStatus!![i]))
         }
-
         val livePost = MutableLiveData<ArrayList<RestaurentCard>>()
         livePost.value = arrayListOf();
         livePost.postValue(post);

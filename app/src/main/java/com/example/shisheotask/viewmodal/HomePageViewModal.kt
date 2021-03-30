@@ -8,6 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.shisheotask.database.AppRepository
 import com.example.shisheotask.modal.RestaurentCard
 
+/**
+ * HomePageViewModal it interact with AppRepository and View
+ */
 public class HomePageViewModal (@NonNull application: Application) : AndroidViewModel(application) {
 
     private var postRepository: AppRepository? = null
@@ -16,6 +19,10 @@ public class HomePageViewModal (@NonNull application: Application) : AndroidView
         postRepository = AppRepository(application)
     }
 
+    /**
+     * getAllRestauRantCard
+     * @return MutableLiveData is observed by View complete
+     */
     fun getAllRestauRantCard() : MutableLiveData<ArrayList<RestaurentCard>>? {
         return postRepository?.getCardListMutableLivedata()
     }

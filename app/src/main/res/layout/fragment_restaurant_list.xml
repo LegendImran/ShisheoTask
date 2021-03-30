@@ -33,7 +33,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search restaurant"
+            android:hint="@string/search_restaurant"
             android:background="#00ffffff"
             android:textSize="20sp"/>
 

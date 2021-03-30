@@ -14,6 +14,7 @@ import com.example.shisheotask.modal.RestaurentCard
 
 class RestaurantRecyclerAdapter(var context:Context, var cards: List<RestaurentCard>) : RecyclerView.Adapter<RestaurantRecyclerAdapter.RviewHolder>()  {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = RviewHolder (
     LayoutInflater.from(parent.context).inflate(R.layout.restaurent_card,parent,false)
     )
@@ -32,9 +33,9 @@ class RestaurantRecyclerAdapter(var context:Context, var cards: List<RestaurentC
         holder.discount_text.text = cards.get(position).discount
         holder.delivery_time.text = cards.get(position).deliveryTime
         holder.payment_type.text = cards.get(position).paymentStatus
+        holder.rating.numStars = cards.get(position).rating
 
     }
-
 
     class RviewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var roundedImageView: ImageView = itemView.findViewById(R.id.roundedImageView)

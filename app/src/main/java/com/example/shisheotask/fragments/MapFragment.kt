@@ -6,20 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.example.shisheotask.R
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapFragment : Fragment(){
+
+/**
+ * MapFragment for showing Map in app
+ */
+class MapFragment : Fragment(), OnMapReadyCallback {
 
 
     private lateinit var mMap: GoogleMap
-      var mapFragment : SupportMapFragment? = null
+    lateinit var mapView: MapView
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,48 +30,44 @@ class MapFragment : Fragment(){
 
         Log.i("TAG"," onCreateView: ")
 
-        mapFragment =(activity as FragmentActivity).supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(object: OnMapReadyCallback{
-            override fun onMapReady(googleMap: GoogleMap?) {
-                Log.i("TAG"," ::onMapReady Called ")
-                mMap = googleMap!!
+        var view:View = inflater.inflate(R.layout.activity_maps,container,false)
 
-                mMap.setMinZoomPreference(12.0f)
-                mMap.setMaxZoomPreference(40.0f)
-                // Add a marker in Sydney and move the camera
-                val burjkhalifa = LatLng(25.1972, 55.2744)
-                val restaurant1 = LatLng(25.192433, 55.250124)
-                val restaurant2 = LatLng(25.184666, 55.231585)
-                val restaurant3 = LatLng(25.162726, 55.258527)
-                mMap.addMarker(MarkerOptions().position(burjkhalifa).title("Marker in Burj khalifa"))
-                mMap.addMarker(MarkerOptions().position(restaurant1).title("Marker in Restarant1"))
-                mMap.addMarker(MarkerOptions().position(restaurant2).title("Marker in Restarant2"))
-                mMap.addMarker(MarkerOptions().position(restaurant3).title("Marker in Restarant3"))
+        mapView = view.findViewById<MapView>(R.id.map)
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(burjkhalifa))            }
-
-        })
-
-        return inflater.inflate(R.layout.activity_maps,container,false)
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        Log.i("TAG"," onViewCreated: ")
 
 
+
+
+    override fun onPause() {
+        super.onPause()
+        if (this.mapView != null) this.mapView!!.onPause()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        Log.i("TAG"," onActivityCreated: ")
-        //mapFragment?.getMapAsync(this)
+    override fun onResume() {
+        super.onResume()
+        mapView?.onResume()
     }
 
-    /*override fun onMapReady(googleMap: GoogleMap?) {
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView?.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView?.onLowMemory()
+    }
+
+    /**
+     * Override Method onMapReady it invoke after map is ready for shwing
+     * @param googleMap using googlee map we can add maeker polyline in map
+     */
+    override fun onMapReady(googleMap: GoogleMap?) {
 
         Log.i("TAG"," ::onMapReady Called ")
         mMap = googleMap!!
@@ -82,32 +79,14 @@ class MapFragment : Fragment(){
         val restaurant1 = LatLng(25.192433, 55.250124)
         val restaurant2 = LatLng(25.184666, 55.231585)
         val restaurant3 = LatLng(25.162726, 55.258527)
+        val restaurant4 = LatLng(25.172726, 55.248527)
         mMap.addMarker(MarkerOptions().position(burjkhalifa).title("Marker in Burj khalifa"))
         mMap.addMarker(MarkerOptions().position(restaurant1).title("Marker in Restarant1"))
         mMap.addMarker(MarkerOptions().position(restaurant2).title("Marker in Restarant2"))
         mMap.addMarker(MarkerOptions().position(restaurant3).title("Marker in Restarant3"))
+        mMap.addMarker(MarkerOptions().position(restaurant4).title("Marker in Restarant3"))
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(burjkhalifa))
-    }*/
-
-    override fun onPause() {
-        super.onPause()
-        if (this.mapFragment != null) this.mapFragment!!.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        mapFragment?.onResume()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mapFragment?.onDestroy()
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-        mapFragment?.onLowMemory()
     }
 
 }
