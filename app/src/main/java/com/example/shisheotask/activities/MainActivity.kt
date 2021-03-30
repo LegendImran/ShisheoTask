@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shisheotask.R
+import com.example.shisheotask.fragments.MapFragment
 import com.example.shisheotask.fragments.RestaurantListFragment
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main);
+        supportActionBar?.hide()
 
         initView()
 
@@ -29,6 +31,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayRestaurentPage() {
         val restaurantListFragment = RestaurantListFragment()
+        //val restaurantListFragment = MapFragment()
+        val bundle = Bundle()
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        beginTransaction.replace(R.id.frame, restaurantListFragment)
+        beginTransaction.commit()
+    }
+
+    private fun displayMapPage() {
+        //val restaurantListFragment = RestaurantListFragment()
+        val restaurantListFragment = MapFragment()
         val bundle = Bundle()
         val beginTransaction = supportFragmentManager.beginTransaction()
         beginTransaction.replace(R.id.frame, restaurantListFragment)
@@ -39,6 +51,6 @@ class MainActivity : AppCompatActivity() {
         displayRestaurentPage()
     }
     fun navigateMapTab(view: View) {
-
+        displayMapPage()
     }
 }

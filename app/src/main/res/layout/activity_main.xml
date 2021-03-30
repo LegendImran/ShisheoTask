@@ -9,7 +9,7 @@
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/tabs"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -26,14 +26,16 @@
         <ImageView
             android:id="@+id/home_tab"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
             android:onClick="navigateHomeTab"
             android:layout_weight="1"
             android:src="@drawable/ic_home_tab"/>
         <ImageView
             android:id="@+id/map_tab"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
             android:onClick="navigateMapTab"
             android:layout_weight="1"
             android:src="@drawable/ic_location_tab"/>

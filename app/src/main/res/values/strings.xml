@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">Shisheo Task</string>
+
+
+    <string-array name="dishname">
+        <item>Holy Grail Restaurant</item>
+        <item>Delicio Cuisine Place</item>
+        <item>Holy Grail Restaurant</item>
+    </string-array>
+
+
+    <string-array name="cuisine">
+        <item>Arabic, Lebanese, Chinese</item>
+        <item>Arabic, Lebanese, Chinese</item>
+        <item>Arabic, Lebanese, Chinese</item>
+    </string-array>
+
+    <string-array name="cost">
+        <item>Delivery: AED 10</item>
+        <item>Delivery: AED 31</item>
+        <item>Delivery: AED 24</item>
+    </string-array>
+
+    <string-array name="sale">
+        <item>20% off Selected items</item>
+        <item>32% off Selected items</item>
+        <item>50% off Selected items</item>
+    </string-array>
+
+    <string-array name="delivery_time">
+        <item>Delivery with 25 min</item>
+        <item>Delivery with 40 min</item>
+        <item>Delivery with 15 min</item>
+    </string-array>
+
+    <string-array name="payment_status">
+        <item>Cash-on-delivery</item>
+        <item>Credit-Card</item>
+        <item>Debit-Card</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+
+
 </resources>
