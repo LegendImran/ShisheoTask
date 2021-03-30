@@ -16,6 +16,7 @@ import com.example.shisheotask.adapter.RestaurantRecyclerAdapter
 import com.example.shisheotask.database.AppRepository
 import com.example.shisheotask.modal.RestaurentCard
 import com.example.shisheotask.viewmodal.HomePageViewModal
+import com.example.shisheotask.viewmodal.HomePageViewModelFactory
 
 class RestaurantListFragment : Fragment() {
 
@@ -34,9 +35,7 @@ class RestaurantListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initView(view)
-
     }
 
 
@@ -44,12 +43,11 @@ class RestaurantListFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycle_restaurant)
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
-        //mViewModel = ViewModelProvider(this).get(HomePageViewModal::class.java)
-
-         var repository:AppRepository = AppRepository(activity?.application!!)
-
-        addValueInAdapter(repository.getCardListMutableLivedata())
-
+        var homePageViewModelFactory = HomePageViewModelFactory(activity?.application!!);
+        mViewModel = ViewModelProvider(this, homePageViewModelFactory).get(HomePageViewModal::class.java)
+        mViewModel.getAllRestauRantCard()?.observe(this, Observer { t ->
+            addValueInAdapter(t)
+        })
     }
 
     private fun addValueInAdapter(list: ArrayList<RestaurentCard>){

@@ -16,8 +16,7 @@ public class HomePageViewModal (@NonNull application: Application) : AndroidView
         postRepository = AppRepository(application)
     }
 
-    /*fun getAllRestauRantCard() : MutableLiveData<ArrayList<RestaurentCard>>? {
-        //return postRepository?.getCardListMutableLivedata()
+    fun getAllRestauRantCard() : MutableLiveData<ArrayList<RestaurentCard>>? {
+        return postRepository?.getCardListMutableLivedata()
     }
-*/
 }

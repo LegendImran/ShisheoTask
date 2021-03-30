@@ -41,7 +41,7 @@ class AppRepository(var application: Application) {
     private var mutableLiveData: MutableLiveData<List<RestaurentCard>> =
         MutableLiveData<List<RestaurentCard>>()
 
-    fun getCardListMutableLivedata():ArrayList<RestaurentCard>{
+    fun getCardListMutableLivedata():MutableLiveData<ArrayList<RestaurentCard>>{
 
         for(i in 0..(images.size-1)){
             post.add(RestaurentCard(images.get(i),dishnames!![i],cuisine!![i],prices!![i],discounts!![i],rates.get(i),deliverTimes!![i],paymentStatus!![i]))
@@ -50,7 +50,7 @@ class AppRepository(var application: Application) {
         val livePost = MutableLiveData<ArrayList<RestaurentCard>>()
         livePost.value = arrayListOf();
         livePost.postValue(post);
-        return post;
+        return livePost;
 
     }
 }
