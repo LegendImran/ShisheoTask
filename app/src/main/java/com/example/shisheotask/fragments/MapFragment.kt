@@ -72,19 +72,21 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         Log.i("TAG"," ::onMapReady Called ")
         mMap = googleMap!!
 
-        mMap.setMinZoomPreference(12.0f)
-        mMap.setMaxZoomPreference(40.0f)
+        mMap.setMinZoomPreference(10.0f)
+        mMap.setMaxZoomPreference(20.0f)
         // Add a marker in Sydney and move the camera
         val burjkhalifa = LatLng(25.1972, 55.2744)
-        val restaurant1 = LatLng(25.192433, 55.250124)
-        val restaurant2 = LatLng(25.184666, 55.231585)
-        val restaurant3 = LatLng(25.162726, 55.258527)
-        val restaurant4 = LatLng(25.172726, 55.248527)
+        val restaurant1 = LatLng(25.092433, 55.200124)
+        val restaurant2 = LatLng(25.014666, 55.121585)
+        val restaurant3 = LatLng(25.002726, 55.258527)
+        val restaurant4 = LatLng(25.092726, 55.248527)
+        val restaurant5 = LatLng(25.012726, 55.158527)
         mMap.addMarker(MarkerOptions().position(burjkhalifa).title("Marker in Burj khalifa"))
         mMap.addMarker(MarkerOptions().position(restaurant1).title("Marker in Restarant1"))
         mMap.addMarker(MarkerOptions().position(restaurant2).title("Marker in Restarant2"))
         mMap.addMarker(MarkerOptions().position(restaurant3).title("Marker in Restarant3"))
-        mMap.addMarker(MarkerOptions().position(restaurant4).title("Marker in Restarant3"))
+        mMap.addMarker(MarkerOptions().position(restaurant4).title("Marker in Restarant4"))
+        mMap.addMarker(MarkerOptions().position(restaurant5).title("Marker in Restarant5"))
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(burjkhalifa))
     }
