@@ -49,7 +49,7 @@ class AppRepository(var application: Application) {
 
 
     /**
-     * this for initialize data
+     * getCardListMutableLivedata connect database and return Live Data
      * @return livePost is MutableLiveData is act like Observable it notify its Observer whenever there is change in data
      */
     fun getCardListMutableLivedata():MutableLiveData<ArrayList<RestaurentCard>>{

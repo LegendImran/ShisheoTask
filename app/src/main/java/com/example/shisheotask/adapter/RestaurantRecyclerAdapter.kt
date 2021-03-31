@@ -19,8 +19,8 @@ class RestaurantRecyclerAdapter(var context:Context, var cards: List<RestaurentC
     LayoutInflater.from(parent.context).inflate(R.layout.restaurent_card,parent,false)
     )
     override fun getItemCount():  Int{
-        if(cards != null && cards?.size!! > 0)
-            return cards?.size!!
+        if(cards.isNotEmpty())
+            return cards.size
         else
             return 0
     }

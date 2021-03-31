@@ -45,22 +45,22 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onPause() {
         super.onPause()
-        if (this.mapView != null) this.mapView!!.onPause()
+        this.mapView.onPause()
     }
 
     override fun onResume() {
         super.onResume()
-        mapView?.onResume()
+        mapView.onResume()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mapView?.onDestroy()
+        mapView.onDestroy()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView?.onLowMemory()
+        mapView.onLowMemory()
     }
 
     /**
