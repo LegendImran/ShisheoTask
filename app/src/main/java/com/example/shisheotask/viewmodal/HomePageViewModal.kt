@@ -26,4 +26,8 @@ public class HomePageViewModal (@NonNull application: Application) : AndroidView
     fun getAllRestauRantCard() : MutableLiveData<ArrayList<RestaurentCard>>? {
         return postRepository?.getCardListMutableLivedata()
     }
+
+    fun getFilterdRestaurent(searchString: String): MutableLiveData<ArrayList<RestaurentCard>>?{
+        return postRepository?.getFilterdRestaurent(searchString)
+    }
 }

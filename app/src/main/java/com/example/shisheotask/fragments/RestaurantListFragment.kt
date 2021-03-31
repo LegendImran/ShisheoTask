@@ -2,9 +2,13 @@ package com.example.shisheotask.fragments
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,9 +28,10 @@ import com.example.shisheotask.viewmodal.HomePageViewModelFactory
 class RestaurantListFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
-
     lateinit var  mViewModel: HomePageViewModal
     var adapter : RestaurantRecyclerAdapter? = null
+
+    lateinit var search:EditText;
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,12 +55,23 @@ class RestaurantListFragment : Fragment() {
      */
     private fun initView(view: View){
         recyclerView = view.findViewById(R.id.recycle_restaurant)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        search = view.findViewById(R.id.searchRest)
 
+        recyclerView.layoutManager = LinearLayoutManager(activity)
         var homePageViewModelFactory = HomePageViewModelFactory(activity?.application!!);
         mViewModel = ViewModelProvider(this, homePageViewModelFactory).get(HomePageViewModal::class.java)
         mViewModel.getAllRestauRantCard()?.observe(this, Observer { t ->
             addRestaurantDataInAdapter(t)
+        })
+
+        search.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {}
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                mViewModel.getFilterdRestaurent(p0.toString())?.observe(this@RestaurantListFragment, Observer { t ->
+                    addRestaurantDataInAdapter(t)
+                })
+            }
         })
     }
 
