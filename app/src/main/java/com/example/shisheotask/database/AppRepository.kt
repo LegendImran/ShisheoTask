@@ -80,7 +80,7 @@ class AppRepository(var application: Application) {
         post.clear()
         for (i in 0..(images.size - 1)) {
             Log.i(TAG,"")
-            if (dishnames!![i].contains(searchString)!!) {
+            if (dishnames!![i].contains(searchString)) {
                 post.add(
                     RestaurentCard(
                         images.get(i),

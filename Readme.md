@@ -1,5 +1,10 @@
 **SHISHEO TASK**
 
+1.Clone the project in your pc
+2.Import project it in android Studio
+3.Build-> Clean Project
+4.Run app
+
 This is Project is made Under **Shisheo** company Assignement
 its based on **MVVM** Design Pattern
 
